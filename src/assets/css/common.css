@@ -1,0 +1,40 @@
+*{
+	outline: none;
+	margin:0px;
+	padding:0px;
+	box-sizing: border-box;
+}
+.Button{
+	padding:8px 12px;
+	background-color: #008000;
+	color:#fff;
+	border:0px;
+	cursor:pointer;
+}
+a{
+	color:#001529;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #777;
+}
+::selection {
+    background: #001529;
+    color: #fff;
+}
+.gutter-box{
+	padding:5px 0;
+}
+.gutter-box .ant-btn{
+	margin-right:10px;
+}
+.container{
+	height:100%;
+	background-color: #fff;
+}
+.padding-middle{
+	padding:10px;
+}
