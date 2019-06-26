@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
 import routes from './routes'
+import store from './store'
 import 'echarts/theme/macarons.js'
 import './assets/css/common.css'
 import './assets/css/iconfont.css'
@@ -27,7 +28,6 @@ Vue.use(Form);
 Vue.use(Input);
 Vue.use(Select);
 Vue.use(Tabs);
-console.log(routes)
 
 const router = new VueRouter({
   scrollBehavior (to, from, savedPosition) {
@@ -46,6 +46,8 @@ Vue.prototype.$error = Modal.error;
 Vue.prototype.$warning = Modal.warning;
 router.beforeEach((to, from, next) => {
   console.log(to)
+  let logined = store.getters.logined;
+  console.log('应用状态管理中logined：'+logined);
   // if(to.matched.some(res => res.meta.requireAuth)){
   //   console.log('需要登录才能访问');
   // }
@@ -59,7 +61,9 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

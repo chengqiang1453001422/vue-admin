@@ -35,7 +35,7 @@ export default {
     showModal() {
       this.visible = true
     },
-    handleOk(e) {
+    handleOk() {
       this.ModalText = 'The modal will be closed after two seconds';
       this.confirmLoading = true;
       setTimeout(() => {

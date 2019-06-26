@@ -4,7 +4,7 @@
       <a-col :span="12">
         <div class="gutter-box">
           <a-card :bordered="false">
-            <a-button type="primary">Primary</a-button>
+            <a-button type="primary" @click="changeState">修改全局vuex状态</a-button>
             <a-button>Default</a-button>
             <a-button type="dashed">Dashed</a-button>
             <a-button type="danger">Danger</a-button>
@@ -21,18 +21,51 @@
           </a-card>
         </div>
       </a-col>
+      <a-col :span="12">
+        <div class="gutter-box">
+          <a-card :bordered="false">
+            <div>{{count}}</div>
+          </a-card>
+        </div>
+      </a-col>
+      <a-col :span="12">
+        <div class="gutter-box">
+          <a-card :bordered="false">
+            <div>测试数据</div>
+          </a-card>
+        </div>
+      </a-col>
     </a-row>
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
+import {Events} from '../../constants'
 export default {
+  name:'Button',
   data() {
     return {
-
+      num:0
     }
   },
   methods: {
-
+    changeState:function() {
+      console.log(this);
+      this.$store.dispatch(Events.COUNT,10);
+      //this.$store.commit(Events.COUNT,10);
+      this.num = this.$store.state.count;
+      console.log(this.$store.state.count)
+    }
+  },
+  computed: {
+    //对象展开运算符，不用为每个state设置为计算属性
+    ...mapState({
+      count: state => state.count
+    }),
+    //将vuex状态申明为计算属性
+    // count() {
+    //   return this.$store.state.count;
+    // }
   },
   beforeCreate() {
     console.log('实例初始化之后,button组件实例创建之前,不可以修改data里的值和触发方法');

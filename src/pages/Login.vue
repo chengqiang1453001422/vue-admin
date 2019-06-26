@@ -25,6 +25,7 @@
       </div>
 </template>
 <script>
+import {Events} from '../constants'
 export default {
   data(){
     return {
@@ -38,6 +39,7 @@ export default {
         avatar:'https://raw.githubusercontent.com/taylorchen709/markdown-images/master/vueadmin/user.png' 
       };
       sessionStorage.setItem('user', JSON.stringify(user));
+      this.$store.dispatch(Events.LOGINED,'已登录');
       this.$router.push({ path: '/main/home' });
     }
   }
