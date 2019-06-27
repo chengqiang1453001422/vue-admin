@@ -125,7 +125,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
   .gutter-box .ant-card{
     height:150px;
   }
