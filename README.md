@@ -2,6 +2,12 @@
 
 ## Project setup
 ```
+git clone https://github.com/chengqiang1453001422/vue-admin.git
+```
+
+## Project setup
+```
+cd vue-admin
 yarn install
 ```
 
