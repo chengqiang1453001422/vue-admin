@@ -61,6 +61,10 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+//注册一个全局的组件
+Vue.component('my-component',{
+  template:'<div>我是组件的内容</div>'
+})
 
 new Vue({
   router,

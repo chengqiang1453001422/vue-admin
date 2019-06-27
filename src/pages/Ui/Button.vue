@@ -5,7 +5,7 @@
         <div class="gutter-box">
           <a-card :bordered="false">
             <a-button type="primary" @click="changeState">修改全局vuex状态</a-button>
-            <a-button>Default</a-button>
+            <a-button @click="vueEvent($event,666)">vue事件中如何使用event对象</a-button>
             <a-button type="dashed">Dashed</a-button>
             <a-button type="danger">Danger</a-button>
           </a-card>
@@ -14,7 +14,7 @@
       <a-col :span="12">
         <div class="gutter-box">
           <a-card :bordered="false">
-            <a-button type="primary">Primary</a-button>
+            <a-button type="primary">$nextTick的使用</a-button>
             <a-button>Default</a-button>
             <a-button type="dashed">Dashed</a-button>
             <a-button type="danger">Danger</a-button>
@@ -25,13 +25,15 @@
         <div class="gutter-box">
           <a-card :bordered="false">
             <div>{{count}}</div>
+            <my-component></my-component>
           </a-card>
         </div>
       </a-col>
       <a-col :span="12">
         <div class="gutter-box">
           <a-card :bordered="false">
-            <div>测试数据</div>
+            <div>{{mycount}}</div>
+            <div>$nextTick,在修改数据之后立即使用这个方法，获取更新后的 DOM</div>
           </a-card>
         </div>
       </a-col>
@@ -45,7 +47,8 @@ export default {
   name:'Button',
   data() {
     return {
-      num:0
+      num:0,
+      mycount:1
     }
   },
   methods: {
@@ -55,6 +58,17 @@ export default {
       //this.$store.commit(Events.COUNT,10);
       this.num = this.$store.state.count;
       console.log(this.$store.state.count)
+    },
+    vueEvent:function(event,val) {
+      console.log(event);
+      this.mycount++;
+      // this.$nextTick(function() {
+      //   console.log('修改数据之后立即使用这个方法，获取更新后的 DOM')
+      // })
+      // 作为一个 Promise 使用 (2.1.0 起新增，详见接下来的提示)
+      this.$nextTick().then(function() {
+        console.log('修改数据之后立即使用这个方法，获取更新后的 DOM')
+      })
     }
   },
   computed: {
@@ -111,4 +125,10 @@ export default {
   }
 }
 </script>
+<style>
+  .gutter-box .ant-card{
+    height:150px;
+  }
+</style>
+
 
