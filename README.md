@@ -1,6 +1,6 @@
 # vue-admin
 
-## Project setup
+## clone Project
 ```
 git clone https://github.com/chengqiang1453001422/vue-admin.git
 ```
