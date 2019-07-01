@@ -9,6 +9,10 @@ import Icon from './pages/Ui/Icon'
 import Modals from './pages/Ui/Modals'
 import Form from './pages/Ui/Form'
 import Tabs from './pages/Ui/Tabs'
+import Less from './pages/css/Less'
+import Sass from './pages/css/Sass'
+import Css from './pages/css/Css'
+import User from './pages/user/User'
 
 
 let routes = [
@@ -38,7 +42,11 @@ let routes = [
             { path: 'icon', component: Icon, name: '图标' },
             { path: 'modals', component: Modals, name: '对话框' },
             { path: 'form', component: Form, name :'表单'},
-            { path: 'tabs', component: Tabs, name :'标签页'}
+            { path: 'tabs', component: Tabs, name :'标签页'},
+            { path: 'less', component: Less, name :'less'},
+            { path: 'sass', component: Sass, name :'sass'},
+            { path: 'css', component: Css, name :'css'},
+            { path: 'user', component: User, name :'user'}
         ]
     },
 	{
