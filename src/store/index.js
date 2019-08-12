@@ -9,6 +9,7 @@ export default new Vuex.Store({
         logined: false,
         loginState: '',
         count:0,
+        collapsed: false,
         user: {
             name: '',
             email: '',
@@ -25,6 +26,9 @@ export default new Vuex.Store({
         [Events.LOGINED] (context, value) {
             context.commit(Events.LOGINED, value);
         },
+        [Events.COLLAPSED] (context, value) {
+            context.commit(Events.COLLAPSED, value);
+        },
         [Events.COUNT] (context, value) {
             context.commit(Events.COUNT, value);
         },
@@ -39,6 +43,9 @@ export default new Vuex.Store({
         [Events.LOGINED] (state, value) {
             state.loginState = value;
             state.logined = true;
+        },
+        [Events.COLLAPSED] (state, value) {
+            state.collapsed = !state.collapsed;
         },
         [Events.COUNT] (state, value) {
             state.count += value;

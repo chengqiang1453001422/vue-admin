@@ -13,6 +13,7 @@ import Less from './pages/css/Less'
 import Sass from './pages/css/Sass'
 import Css from './pages/css/Css'
 import User from './pages/user/User'
+import Slot from './pages/senior/Slot'
 
 
 let routes = [
@@ -46,7 +47,8 @@ let routes = [
             { path: 'less', component: Less, name :'less'},
             { path: 'sass', component: Sass, name :'sass'},
             { path: 'css', component: Css, name :'css'},
-            { path: 'user', component: User, name :'user'}
+            { path: 'user', component: User, name :'user'},
+            { path: 'slot', component: Slot, name: 'slot'}
         ]
     },
 	{

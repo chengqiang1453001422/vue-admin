@@ -6,7 +6,7 @@
           <a-card :bordered="false">
             <div class="y-center">
               <div class="mr-m">
-                <a-icon type="heart" :style="{ fontSize: '32px',color: '#f44455' }"/>
+                <a-icon type="heart" :style="{ fontSize: '32px',color: '#f44455' }" />
               </div>
               <div>
                 <div class="text-muted">收藏</div>
@@ -19,7 +19,7 @@
           <a-card :bordered="false">
             <div class="y-center">
               <div class="mr-m">
-                <a-icon type="cloud" :style="{ fontSize: '32px',color: '#6887ff' }"/>
+                <a-icon type="cloud" :style="{ fontSize: '32px',color: '#6887ff' }" />
               </div>
               <div>
                 <div class="text-muted">云数据</div>
@@ -34,7 +34,7 @@
           <a-card :bordered="false">
             <div class="y-center">
               <div class="mr-m">
-                <a-icon type="camera" :style="{ fontSize: '32px',color: '#6887ff' }"/>
+                <a-icon type="camera" :style="{ fontSize: '32px',color: '#6887ff' }" />
               </div>
               <div>
                 <div class="text-muted">照片</div>
@@ -47,7 +47,7 @@
           <a-card :bordered="false">
             <div class="y-center">
               <div class="mr-m">
-                <a-icon type="mail" :style="{ fontSize: '32px',color: '#6cc788' }"/>
+                <a-icon type="mail" :style="{ fontSize: '32px',color: '#6cc788' }" />
               </div>
               <div>
                 <div class="text-muted">邮件</div>
@@ -75,7 +75,7 @@
                 <small>10个已经完成，2个待完成，1个正在进行中</small>
               </div>
               <a href class="card-tool">
-                <a-icon type="sync"/>
+                <a-icon type="sync" />
               </a>
               <a-timeline>
                 <a-timeline-item color="green">新版本迭代会</a-timeline-item>
@@ -102,7 +102,7 @@
                 <h3>消息栏</h3>
               </div>
               <a href class="card-tool">
-                <a-icon type="sync"/>
+                <a-icon type="sync" />
               </a>
               <a-list itemLayout="horizontal" :dataSource="data">
                 <a-list-item slot="renderItem" slot-scope="item, index">
@@ -128,9 +128,9 @@
                 <small>最近7天的用户访问量</small>
               </div>
               <a href class="card-tool">
-                <a-icon type="sync"/>
+                <a-icon type="sync" />
               </a>
-			  <div id="myChart1" :style="{height:'224px',width:'100%'}"></div>
+              <div id="myChart1" :style="{height:'224px',width:'100%'}"></div>
             </div>
           </a-card>
         </div>
@@ -140,6 +140,9 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+import { Events } from "../constants";
+import { setTimeout } from "timers";
 const data = [
   {
     title: "天气不错"
@@ -157,85 +160,132 @@ const data = [
 export default {
   data() {
     return {
-      collapsed: false,
+      myChart:null,
       data
     };
   },
+  computed: {
+    //对象展开运算符，不用为每个state设置为计算属性
+    ...mapState({
+      collapsed: state => state.collapsed
+    })
+  },
   methods: {
     drawLine() {
+      console.log("图表重绘");
       // 基于准备好的dom，初始化echarts实例
-      let myChart = this.$echarts.init(document.getElementById("myChart"),'macarons');
+      this.myChart = this.$echarts.init(
+        document.getElementById("myChart"),
+        "macarons"
+      );
       // 绘制图表
-      myChart.setOption({
-		backgroundColor:'rgb(8, 38, 58)',
-		grid:{
-			left:'5%',
-			right:'5%',
-			top:'12%',
-			bottom:'12%',
-			backgroundColor:'transparent',
-			containLabel:true //包含坐标抽刻度标签
-		},
+      this.myChart.setOption({
+        backgroundColor: "rgb(8, 38, 58)",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "12%",
+          bottom: "12%",
+          backgroundColor: "transparent",
+          containLabel: true //包含坐标抽刻度标签
+        },
         tooltip: {
-			trigger:'axis'
-		},
+          trigger: "axis"
+        },
         xAxis: {
-			boundaryGap:false,
-          	data: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"]
+          boundaryGap: false,
+          data: [
+            "1月",
+            "2月",
+            "3月",
+            "4月",
+            "5月",
+            "6月",
+            "7月",
+            "8月",
+            "9月",
+            "10月",
+            "11月",
+            "12月"
+          ]
         },
         yAxis: {
-			splitLine: {
-				show:false
-			},
-			splitArea: {
-				show: false
-			}
-		},
+          splitLine: {
+            show: false
+          },
+          splitArea: {
+            show: false
+          }
+        },
         series: [
           {
             name: "销量",
             type: "line",
-			smooth:true,
-            data: [5, 20, 36, 10, 10, 20,36,40,86,75,42,68,75]
+            smooth: true,
+            data: [5, 20, 36, 10, 10, 20, 36, 40, 86, 75, 42, 68, 75]
           }
         ]
       });
-	},
-	drawLine1() {
+    },
+    drawLine1() {
       // 基于准备好的dom，初始化echarts实例
-      let myChart = this.$echarts.init(document.getElementById("myChart1"),'macarons');
+      let myChart1 = this.$echarts.init(
+        document.getElementById("myChart1"),
+        "macarons"
+      );
       // 绘制图表
-      myChart.setOption({
-		grid:{
-			left:'3%',
-			right:'12%',
-			top:'8%',
-			bottom:'8%',
-			containLabel:true //包含坐标抽刻度标签
-		},
+      myChart1.setOption({
+        grid: {
+          left: "3%",
+          right: "12%",
+          top: "8%",
+          bottom: "8%",
+          containLabel: true //包含坐标抽刻度标签
+        },
         tooltip: {
-			trigger:'axis'
-		},
+          trigger: "axis"
+        },
         xAxis: {
-			boundaryGap:false,
-			data: ['2018-12-01','2019-01-01','2019-02-01','2019-03-01','2019-04-01', '2019-05-01', '2019-06-01']
+          boundaryGap: false,
+          data: [
+            "2018-12-01",
+            "2019-01-01",
+            "2019-02-01",
+            "2019-03-01",
+            "2019-04-01",
+            "2019-05-01",
+            "2019-06-01"
+          ]
         },
         yAxis: {},
         series: [
           {
             name: "访问量",
-			type: "line",
-			smooth:true,
-            data: [1200,1400,808,811,626,488,1600]
+            type: "line",
+            smooth: true,
+            data: [1200, 1400, 808, 811, 626, 488, 1600]
           }
         ]
       });
     }
   },
+  created() {},
   mounted() {
-	this.drawLine();
-	this.drawLine1();
+    var that = this;
+    new Promise(function(resolve, reject) {
+      setTimeout(function() {
+        that.drawLine();
+        that.drawLine1();
+      }, 250);
+    });
     //console.log(this.$message)
+  },
+  watch: {
+    collapsed: function() {
+      console.log(this.myChart);
+      this.myChart.resize();
+      this.drawLine1();
+    }
   }
 };
 </script>
@@ -265,6 +315,6 @@ export default {
   top: 24px;
 }
 .no-padding .ant-card-body {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 </style>

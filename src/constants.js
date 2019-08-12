@@ -1,6 +1,8 @@
 export const Events = {
     LOGINED: 'logined',
 
+    COLLAPSED: 'collapsed',
+
     PROGRESS: 'progress',
     
 	COUNT: 'count',
