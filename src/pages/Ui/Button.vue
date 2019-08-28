@@ -6,7 +6,7 @@
           <a-card :bordered="false">
             <a-button type="primary" @click="changeState">修改全局vuex状态</a-button>
             <a-button @click="vueEvent($event,666)">vue事件中如何使用event对象</a-button>
-            <a-button type="dashed">Dashed</a-button>
+            <a-button @click="changeState1(20)" type="dashed">用mapActions修改全局状态</a-button>
             <a-button type="danger">Danger</a-button>
           </a-card>
         </div>
@@ -41,7 +41,7 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState,mapActions } from 'vuex'
 import {Events} from '../../constants'
 export default {
   name:'Button',
@@ -51,10 +51,14 @@ export default {
       mycount:1
     }
   },
-  methods: {
+  methods: { 
+    ...mapActions({
+      changeState1:Events.COUNT
+    }),
     changeState:function() {
       console.log(this);
       this.$store.dispatch(Events.COUNT,10);
+      //官方不建议用这种方法
       //this.$store.commit(Events.COUNT,10);
       this.num = this.$store.state.count;
       console.log(this.$store.state.count)

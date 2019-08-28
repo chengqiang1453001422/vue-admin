@@ -34,6 +34,9 @@ export default new Vuex.Store({
         },
         [Actions.UPDATE_USER] (context, value) {
             context.commit(Actions.UPDATE_USER, value);
+        },
+        count(context,value){
+            context.commit(Events.COUNT, value)
         }
     },
     mutations: {
